@@ -1,9 +1,9 @@
-name: CI CD for Python
+name: Python Pipeline for CI and CD
 
 on: push
 
 jobs:
-  Job1:
+  test:
     runs-on: Ubuntu-18.4
     steps:
       - uses: actions/checkout@4
@@ -12,14 +12,12 @@ jobs:
       - name: Run python script
         run: python hello.py 
 
-  Job2:
+  build:
     runs-on: Ubuntu-18.4
-    needs: [Job1]
+    needs: [test]
     steps:
       - uses: actions/checkout@4
       - uses: actions/upload-artifact@v4
         with:
           name : hello
           path: .
-      
-      
