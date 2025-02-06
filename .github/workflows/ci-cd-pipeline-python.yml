@@ -1,0 +1,21 @@
+name: CI CD for Python
+
+on: push
+
+jobs:
+  Job1:
+    runs-on: Ubuntu-18.4
+    steps:
+      - uses: actions/checkout@4
+      - name: Setup Python
+        uses: actions/setup-python@v1.1.1
+      - name: Run python script
+        run: |
+          python ./hello.py 
+
+  Job2:
+    runs-on: Ubuntu-18.4
+    needs: [Job1]
+    steps:
+      - uses: actions/checkout@4
+      
